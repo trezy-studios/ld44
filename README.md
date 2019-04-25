@@ -1,6 +1,8 @@
 # ld44
 
-## Setup
+:shipit: :shipit: :shipit:
+
+## Running the project
 
 1. Install Yarn dependencies
 
