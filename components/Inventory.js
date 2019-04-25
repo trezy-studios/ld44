@@ -57,8 +57,6 @@ class Inventory extends React.Component {
           Add not-Logs
         </button>
 
-        {console.log(this.props.inventory.items)}
-
         <ul>
           {this.props.inventory.items.map(item => (
             <li key={Math.random()}>

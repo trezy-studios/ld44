@@ -55,6 +55,7 @@
     "classnames": "^2.2.6",
     "git-rev-sync": "^1.12.0",
     "localforage": "^1.7.3",
+    "moment": "^2.24.0",
     "next": "^8.1.0",
     "next-redux-wrapper": "^3.0.0-alpha.2",
     "nprogress": "^0.2.0",
