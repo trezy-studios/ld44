@@ -1,0 +1,11 @@
+{
+  "env": { "browser": true },
+  "extends": "@fuelrats/eslint-config-react",
+  "rules": {
+    "arrow-parens": "off",
+    "new-parens": "off",
+
+    "import/no-cycle": "off",
+    "import/prefer-default-export": "off"
+  }
+}
