@@ -6,8 +6,10 @@ import React from 'react'
 
 
 // Component imports
-import { PageWrapper } from '../components'
-
+import {
+  Inventory,
+  PageWrapper,
+} from '../components'
 
 
 
@@ -19,6 +21,8 @@ const Index = () => (
     </header>
 
     <p>It's a text!</p>
+
+    <Inventory />
   </PageWrapper>
 )
 

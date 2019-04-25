@@ -5,7 +5,7 @@ import actionTypes from '../actionTypes'
 
 
 
-const addItem = (item, slot) => dispatch => {
+const addItem = item => dispatch => {
   const processedItem = { ...item }
 
   if (!processedItem.quantity) {
@@ -13,10 +13,7 @@ const addItem = (item, slot) => dispatch => {
   }
 
   dispatch({
-    payload: {
-      item: processedItem,
-      slot,
-    },
+    payload: { item: processedItem },
     type: actionTypes.ADD_ITEM,
   })
 }

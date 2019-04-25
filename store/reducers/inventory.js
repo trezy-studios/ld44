@@ -57,7 +57,7 @@ const inventoryReducer = (state = initialState.inventory, action) => {
           payload.item.id = uuid()
         }
 
-        newItemList[newItemList.findIndex(item => !item)] = payload.item
+        newItemList.push(payload.item)
       }
 
       return {
