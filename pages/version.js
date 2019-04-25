@@ -1,13 +1,13 @@
 /* globals
-    $BUILD_BRANCH:false
-    $BUILD_COMMIT:false
-    $BUILD_COMMIT_RANGE:false
+$CIRCLE_SHA1:false
+    $CIRCLE_BRANCH:false
+    $CIRCLE_BUILD_URL:false
+    $CIRCLE_COMPARE_URL:false
+    $CIRCLE_SHA1:false
+
     $BUILD_DATE:false
-    $BUILD_PATH:false
     $NODE_VERSION:false
     $NEXT_BUILD_ID:false
-    $REPOSITORY_PATH:false
-    $REPOSITORY_URL:false
     $VERSION:false
 */
 
@@ -25,15 +25,16 @@ import { PageWrapper } from '../components'
 
 
 // Component Constants
-const BUILD_BRANCH = $BUILD_BRANCH
-const BUILD_COMMIT = $BUILD_COMMIT
-const BUILD_COMMIT_RANGE = $BUILD_COMMIT_RANGE
+const CIRCLE_BRANCH = $CIRCLE_BRANCH
+const CIRCLE_BUILD_URL = $CIRCLE_BUILD_URL
+const CIRCLE_COMPARE_URL = $CIRCLE_COMPARE_URL
+const CIRCLE_SHA1 = $CIRCLE_SHA1
+
 const BUILD_DATE = $BUILD_DATE
-const BUILD_PATH = $BUILD_PATH
 const NODE_VERSION = $NODE_VERSION
 const NEXT_BUILD_ID = $NEXT_BUILD_ID
-const REPOSITORY_PATH = $REPOSITORY_PATH
-const REPOSITORY_URL = $REPOSITORY_URL
+const REPOSITORY_PATH = /https:\/\/circleci\.com\/gh\/(.*\/.*)\/24/.exec($CIRCLE_BUILD_URL)[1]
+const REPOSITORY_URL = `https://github.com/${REPOSITORY_PATH}`
 const VERSION = $VERSION
 
 
@@ -57,12 +58,12 @@ const Version = () => (
               </td>
             </tr>
 
-            {BUILD_PATH && (
+            {CIRCLE_BUILD_URL && (
               <tr>
                 <th>Built On:</th>
 
                 <td>
-                  <a target="_blank" rel="noopener noreferrer" href={BUILD_PATH}>
+                  <a target="_blank" rel="noopener noreferrer" href={CIRCLE_BUILD_URL}>
                     <time dateTime={BUILD_DATE}>{moment.utc(BUILD_DATE).format('MMMM Do YYYY, hh:mm z')}</time>
                   </a>
                 </td>
@@ -73,8 +74,8 @@ const Version = () => (
               <th>Branch:</th>
 
               <td>
-                <a target="_blank" rel="noopener noreferrer" href={`${REPOSITORY_URL}/tree/${BUILD_BRANCH}`}>
-                  {BUILD_BRANCH}
+                <a target="_blank" rel="noopener noreferrer" href={`${REPOSITORY_URL}/tree/${CIRCLE_BRANCH}`}>
+                  {CIRCLE_BRANCH}
                 </a>
               </td>
             </tr>
@@ -83,8 +84,8 @@ const Version = () => (
               <th>Commit:</th>
 
               <td>
-                <a target="_blank" rel="noopener noreferrer" href={`${REPOSITORY_URL}${BUILD_COMMIT_RANGE ? `/compare/${BUILD_COMMIT_RANGE}` : ''}`}>
-                  {BUILD_COMMIT || 'null'}
+                  {CIRCLE_SHA1 || 'null'}
+                <a target="_blank" rel="noopener noreferrer" href={CIRCLE_COMPARE_URL}>
                 </a>
               </td>
             </tr>
@@ -115,8 +116,8 @@ Version.getInitialProps = ({ query, res }) => {
         id: NEXT_BUILD_ID,
         type: 'webMetadata',
         attributes: {
-          buildBranch: BUILD_BRANCH,
-          buildCommit: BUILD_COMMIT,
+          buildCommit: CIRCLE_SHA1,
+          buildBranch: CIRCLE_BRANCH,
           buildDate: BUILD_DATE,
           nodeVersion: NODE_VERSION,
           version: `v${VERSION}`,
