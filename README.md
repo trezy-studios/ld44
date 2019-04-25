@@ -1,5 +1,7 @@
 # ld44
 
+:shipit: :shipit: :shipit:
+
 ## Running the project
 
 `yarn install`
