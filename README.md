@@ -1,5 +1,11 @@
 # ld44
 
+## Running the project
+
+`yarn install`
+
+`yarn dev`
+
 ## Contributors
 
 [Saricden (Collaborator)](https://github.com/saricden)
