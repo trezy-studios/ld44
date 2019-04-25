@@ -1,10 +1,18 @@
 # ld44
 
-## Running the project
+## Setup
 
-`yarn install`
+1. Install Yarn dependencies
 
-`yarn dev`
+    ```
+    yarn install
+    ```
+
+1. Start the app
+
+    ```
+    yarn dev
+    ```
 
 ## Contributors
 
