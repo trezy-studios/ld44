@@ -33,7 +33,7 @@ const CIRCLE_SHA1 = $CIRCLE_SHA1
 const BUILD_DATE = $BUILD_DATE
 const NODE_VERSION = $NODE_VERSION
 const NEXT_BUILD_ID = $NEXT_BUILD_ID
-const REPOSITORY_PATH = /https:\/\/circleci\.com\/gh\/(.*\/.*)\/24/.exec($CIRCLE_BUILD_URL)[1]
+const [REPOSITORY_PATH] = /https:\/\/circleci\.com\/gh\/(.*\/.*)\/24/u.exec($CIRCLE_BUILD_URL)
 const REPOSITORY_URL = `https://github.com/${REPOSITORY_PATH}`
 const VERSION = $VERSION
 
@@ -84,8 +84,8 @@ const Version = () => (
               <th>Commit:</th>
 
               <td>
-                  {CIRCLE_SHA1 || 'null'}
                 <a target="_blank" rel="noopener noreferrer" href={CIRCLE_COMPARE_URL}>
+                  {CIRCLE_SHA1 || 'null'}
                 </a>
               </td>
             </tr>
