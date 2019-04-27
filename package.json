@@ -25,8 +25,6 @@
     "@babel/plugin-proposal-do-expressions": "^7.2.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@fuelrats/eslint-config-react": "^0.10.4",
-    "@zeit/next-css": "^1.0.1",
-    "@zeit/next-workers": "^1.0.0",
     "all-contributors-cli": "^6.3.1",
     "babel-eslint": "^10.0.1",
     "coveralls": "^3.0.3",
@@ -51,7 +49,6 @@
     "postcss-nested": "^4.1.2",
     "postcss-preset-env": "^6.6.0",
     "raw-loader": "^2.0.0",
-    "webpack": "^4.30.0",
     "worker-loader": "^2.0.0"
   },
   "dependencies": {
@@ -59,6 +56,8 @@
     "@fortawesome/free-brands-svg-icons": "^5.8.1",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-workers": "^1.0.0",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "git-rev-sync": "^1.12.0",
@@ -76,6 +75,7 @@
     "redux-logger": "^3.0.6",
     "redux-starter-kit": "^0.4.3",
     "redux-thunk": "^2.3.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "webpack": "^4.30.0"
   }
 }

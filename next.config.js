@@ -1,8 +1,6 @@
 // Module imports
 const crypto = require('crypto')
-const glob = require('glob')
 const git = require('git-rev-sync')
-const path = require('path')
 const webpack = require('webpack')
 const withCSS = require('@zeit/next-css')
 const withWorkers = require('@zeit/next-workers')
@@ -25,6 +23,7 @@ const {
   CIRCLE_PROJECT_USERNAME,
   CIRCLECI,
   LOCALE_SUBPATHS,
+/* eslint-disable-next-line no-undef */
 } = process.env
 const DEV_BUILD_ID_LENGTH = 16
 
@@ -46,7 +45,7 @@ module.exports = withWorkers(withCSS({
   },
 
   webpack: (config, { buildId, dev }) => {
-    const repositoryPath = `${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}` || /(?:git@|https:\/\/)github.com(?:\/|:)(.+\/.+).git/gi.exec(git.remoteUrl())[1]
+    const repositoryPath = `${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}` || /(?:git@|https:\/\/)github.com(?:\/|:)(.+\/.+).git/ugi.exec(git.remoteUrl())[1]
 
     let buildPath = null
 
@@ -63,31 +62,25 @@ module.exports = withWorkers(withCSS({
       $IS_DEVELOPMENT: JSON.stringify(dev),
       $IS_STAGING: JSON.stringify(['develop', 'beta'].includes(git.branch())),
       $NEXT_BUILD_ID: JSON.stringify(buildId),
+      /* eslint-disable-next-line no-undef */
       $NODE_VERSION: JSON.stringify(process.version),
       $REPOSITORY_PATH: JSON.stringify(repositoryPath),
       $VERSION: JSON.stringify(packageData.version),
     }))
 
     config.module.rules.push({
-      exclude: /node_modules/,
-      test: /\.svg$/,
+      exclude: /node_modules/u,
+      test: /\.svg$/u,
       loader: 'raw-loader',
     })
 
     config.module.rules.unshift({
       enforce: 'pre',
-      exclude: /node_modules/,
+      exclude: /node_modules/u,
       loader: 'eslint-loader',
-      test: /\.js$/,
+      test: /\.js$/u,
     })
 
     return config
-  },
-
-  sassLoaderOptions: {
-    includePaths: ['node_modules']
-      .map((d) => path.join(__dirname, d))
-      .map((g) => glob.sync(g))
-      .reduce((a, c) => a.concat(c), []),
   },
 }))
