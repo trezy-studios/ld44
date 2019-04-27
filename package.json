@@ -9,8 +9,14 @@
     "add-contributor": "all-contributors add",
     "build": "next build",
     "dev": "next",
+    "precommit": "lint-staged",
     "test": "NODE_ENV=test jest",
     "test-coverage": "yarn test --coverage --coverageReporters=text-lcov | coveralls"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn precommit"
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
@@ -32,8 +38,10 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.6.0",
+    "husky": "^2.1.0",
     "jest": "^24.7.1",
     "jest-environment-enzyme": "^7.0.2",
+    "lint-staged": "^8.1.5",
     "postcss-color-function": "^4.1.0",
     "postcss-easy-import": "^3.0.0",
     "postcss-for": "^2.1.1",
