@@ -60,7 +60,6 @@ class Inventory extends React.Component {
         <ul>
           {this.props.inventory.items.map(item => (
             <li key={Math.random()}>
-              {console.log(item)}
               <pre>{JSON.stringify(item, null, 2)}</pre>
             </li>
           ))}

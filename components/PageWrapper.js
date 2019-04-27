@@ -10,13 +10,6 @@ import React from 'react'
 
 
 
-// Local imports
-import { Footer } from '.'
-
-
-
-
-
 // Local constants
 const maxDecriptionLength = 50
 const maxTitleLength = 50
@@ -71,8 +64,6 @@ class PageWrapper extends React.Component {
 
         <main className={mainClasses}>
           {children}
-
-          <Footer />
         </main>
       </>
     )
