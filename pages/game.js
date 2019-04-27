@@ -47,11 +47,11 @@ class LD44 extends React.Component {
 
   render () {
     return (
-      <div>
+      <>
         {/* eslint-disable jsx-a11y/control-has-associated-label */}
         <canvas ref={this.canvas} />
         {/* eslint-enable */}
-      </div>
+      </>
     )
   }
 }
