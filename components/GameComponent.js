@@ -5,8 +5,12 @@ import Phaser, {
 } from 'phaser'
 import React from 'react'
 
+// Boot scenes
+import BootScene from '../scenes/BootScene'
+import PreloaderScene from '../scenes/PreloaderScene'
 
-
+// UI scenes
+import TitleScene from '../scenes/ui/TitleScene'
 
 
 class GameComponent extends React.Component {
@@ -26,10 +30,11 @@ class GameComponent extends React.Component {
         parent: document.querySelector('[role=application]'),
         width: window.innerWidth,
       },
-      scene: {
-        create: () => {},
-        preload: () => {},
-      },
+      scene: [
+        BootScene,
+        PreloaderScene,
+        TitleScene,
+      ],
     })
   }
 
