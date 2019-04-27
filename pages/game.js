@@ -6,6 +6,7 @@ import React from 'react'
 
 
 // Local imports
+import { Hotbar } from '../components'
 import { isBrowser } from '../helpers'
 
 
@@ -19,7 +20,10 @@ const Game = () => {
     /* eslint-enable */
 
     return (
-      <GameComponent />
+      <>
+        <GameComponent />
+        <Hotbar />
+      </>
     )
   }
 

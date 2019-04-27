@@ -1,0 +1,58 @@
+.hotbar {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  padding: 1rem;
+  position: absolute;
+
+  li {
+    align-items: center;
+    border-color: var(--white);
+    border-radius: 1rem;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    display: flex;
+    height: 4vmax;
+    justify-content: center;
+    opacity: 0.6
+    width: 4vmax;
+  }
+
+  &[data-position=horizontal] ol {
+    flex-direction: row;
+  }
+
+  &[data-position=vertical] ol {
+    flex-direction: column;
+  }
+
+  &[data-vertical-alignment=bottom] {
+    bottom: 1rem;
+  }
+
+  &[data-vertical-alignment=middle] {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &[data-vertical-alignment=top] {
+    top: 1rem;
+  }
+
+  &[data-horizontal-alignment=left] {
+    left: 1rem;
+  }
+
+  &[data-horizontal-alignment=middle] {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &[data-horizontal-alignment=right] {
+    right: 1rem;
+  }
+
+  &[data-vertical-alignment=middle][data-horizontal-alignment=middle] {
+    transform: translate(-50%, -50%);
+  }
+}
