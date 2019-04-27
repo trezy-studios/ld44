@@ -4,7 +4,7 @@
   "main": "index.js",
   "repository": "git@github.com:trezy-studios/ld44.git",
   "author": "Trezy <tre@trezy.com>",
-  "license": "MIT",
+  "license": "Unlicense",
   "scripts": {
     "add-contributor": "all-contributors add",
     "build": "next build",
