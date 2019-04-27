@@ -3290,6 +3290,11 @@ etag@1.8.1, etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
+eventemitter3@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-3.1.0.tgz#090b4d6cdbd645ed10bf750d4b5407942d7ba163"
+  integrity sha512-ivIvhpq/Y0uSjcHDcOIccjmYjGLcP09MFGE7ysAwkAvkXfpZlC985pH2/ui64DKazbTW/4kN3yqozUxlXzI6cA==
+
 events@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/events/-/events-3.0.0.tgz#9a0a0dfaf62893d92b875b8f2698ca4114973e88"
@@ -3350,6 +3355,14 @@ expect@^24.7.1:
     jest-matcher-utils "^24.7.0"
     jest-message-util "^24.7.1"
     jest-regex-util "^24.3.0"
+
+exports-loader@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/exports-loader/-/exports-loader-0.7.0.tgz#84881c784dea6036b8e1cd1dac3da9b6409e21a5"
+  integrity sha512-RKwCrO4A6IiKm0pG3c9V46JxIHcDplwwGJn6+JJ1RcVnh/WSGJa0xkmk5cRVtgOPzCAtTMGj2F7nluh9L0vpSA==
+  dependencies:
+    loader-utils "^1.1.0"
+    source-map "0.5.0"
 
 extend-shallow@^2.0.1:
   version "2.0.1"
@@ -4052,6 +4065,14 @@ import-local@^2.0.0:
   dependencies:
     pkg-dir "^3.0.0"
     resolve-cwd "^2.0.0"
+
+imports-loader@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/imports-loader/-/imports-loader-0.8.0.tgz#030ea51b8ca05977c40a3abfd9b4088fe0be9a69"
+  integrity sha512-kXWL7Scp8KQ4552ZcdVTeaQCZSLW+e6nJfp3cwUMB673T7Hr98Xjx5JK+ql7ADlJUvj1JS5O01RLbKoutN5QDQ==
+  dependencies:
+    loader-utils "^1.0.2"
+    source-map "^0.6.1"
 
 imurmurhash@^0.1.4:
   version "0.1.4"
@@ -6141,6 +6162,15 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
+phaser@^3.16.2:
+  version "3.16.2"
+  resolved "https://registry.yarnpkg.com/phaser/-/phaser-3.16.2.tgz#ae95dcbd5c4ed8eb550d99570ceaa9d2fed8e277"
+  integrity sha512-r1SipuO4Lq17cmQOegZV6zBdqmQyJH2A6CZz/dNYPIPfGQl8Clay0hWqI/FluMi7uPrSFvaY63VeRpr1IP10iA==
+  dependencies:
+    eventemitter3 "^3.1.0"
+    exports-loader "^0.7.0"
+    imports-loader "^0.8.0"
+
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
@@ -7632,6 +7662,11 @@ source-map-url@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/source-map-url/-/source-map-url-0.4.0.tgz#3e935d7ddd73631b97659956d55128e87b5084a3"
   integrity sha1-PpNdfd1zYxuXZZlW1VEo6HtQhKM=
+
+source-map@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.0.tgz#0fe96503ac86a5adb5de63f4e412ae4872cdbe86"
+  integrity sha1-D+llA6yGpa213mP05BKuSHLNvoY=
 
 source-map@0.6.1, source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.1:
   version "0.6.1"

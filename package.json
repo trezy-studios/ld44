@@ -59,6 +59,7 @@
     "next": "^8.1.0",
     "next-redux-wrapper": "^3.0.0-alpha.2",
     "nprogress": "^0.2.0",
+    "phaser": "^3.16.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
