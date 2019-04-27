@@ -6,7 +6,7 @@ let MEMORY_MAX_INSTANCES = 0;
 
 class Memory{
     constructor(){
-        if(MEMORY_MAX_INSTANCES>config.MEMORY.MAX_INSTANCES)throw config.errors.MEMORY.MEMORY_LIMIT_EXCEDED
+        if(MEMORY_MAX_INSTANCES>config.MEMORY.MAX_INSTANCES)throw config.ERRORS.MEMORY.MEMORY_LIMIT_EXCEDED
         MEMORY_MAX_INSTANCES++;
         this.movie = new Blob();
         this.maxValue = 1;
