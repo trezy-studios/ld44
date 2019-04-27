@@ -24,13 +24,17 @@ class LD44 extends React.Component {
       this.game = new Game({
         canvas: this.canvas.current,
         type: WEBGL,
-        height: window.innerHeight,
-        width: window.innerWidth,
         physics: {
           default: 'arcade',
           arcade: {
             gravity: { y: 200 },
           },
+        },
+        scale: {
+          height: window.innerHeight,
+          mode: Phaser.Scale.RESIZE,
+          parent: 'body',
+          width: window.innerWidth,
         },
         scene: {
           create: () => {},
