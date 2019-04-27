@@ -23,7 +23,7 @@ class GameComponent extends React.Component {
       scale: {
         height: window.innerHeight,
         mode: Phaser.Scale.RESIZE,
-        parent: 'body',
+        parent: document.querySelector('[role=application]'),
         width: window.innerWidth,
       },
       scene: {
