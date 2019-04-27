@@ -6,6 +6,7 @@ import config from '../game.config'
 
 
 // Local constants
+// @Trezy this is not a constant, it is changed on lines 52 and 56
 let MEMORY_MAX_INSTANCES = 0
 
 
@@ -69,7 +70,7 @@ class Memory {
   \***************************************************************************/
 
   get canCapture () {
-    return (this.captureStartTimeMS + config.MEMORY_MAX_LENGTH_MS) >= performance.now()
+    return (this.captureStartTimeMS + config.MEMORY.MAX_DURATION) >= performance.now()
   }
 }
 
