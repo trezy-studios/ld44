@@ -3,6 +3,7 @@
   "extends": "@fuelrats/eslint-config-react",
   "rules": {
     "arrow-parens": "off",
+    "id-length": "off",
     "new-parens": "off",
 
     "import/no-cycle": "off",
