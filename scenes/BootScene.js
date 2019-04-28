@@ -6,7 +6,6 @@ class BootScene extends Scene {
   }
 
   create () {
-    console.log('start boot scene', this)
     this.scene.start('scene-preloader')
   }
 }

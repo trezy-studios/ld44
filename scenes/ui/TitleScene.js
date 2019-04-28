@@ -5,8 +5,8 @@ class TitleScene extends Scene {
     super('scene-ui-title')
   }
 
-  static create () {
-    console.log('made it to the title!')
+  create () {
+    this.scene.start('scene-level-nub')
   }
 }
 

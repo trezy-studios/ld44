@@ -12,6 +12,8 @@ import PreloaderScene from '../scenes/PreloaderScene'
 // UI scenes
 import TitleScene from '../scenes/ui/TitleScene'
 
+// Levels / areas
+import LevelNub from '../scenes/levels/LevelNub'
 
 class GameComponent extends React.Component {
   componentDidMount () {
@@ -34,6 +36,7 @@ class GameComponent extends React.Component {
         BootScene,
         PreloaderScene,
         TitleScene,
+        LevelNub,
       ],
     })
   }

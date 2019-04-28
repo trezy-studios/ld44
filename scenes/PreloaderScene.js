@@ -6,7 +6,6 @@ class PreloaderScene extends Scene {
   }
 
   create () {
-    console.log('preloader create', this)
     this.scene.start('scene-ui-title')
   }
 }
