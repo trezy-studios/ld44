@@ -1,5 +1,7 @@
 import { Scene, Input } from 'phaser'
+import { state } from '../../data'
 
+window.state = state
 class LevelNub extends Scene {
   constructor () {
     super('scene-level-nub')
@@ -11,7 +13,6 @@ class LevelNub extends Scene {
     const playerY = 50
     this.state.set('player', this.physics.add.sprite(playerX, playerY, 'hero'))
     this.state.set('keys', this.input.keyboard.createCursorKeys())
-    console.log(this.state.get('keys'))
     this.WSAD = {
       w: this.input.keyboard.addKey(Input.Keyboard.KeyCodes.W),
       s: this.input.keyboard.addKey(Input.Keyboard.KeyCodes.S),
