@@ -1,7 +1,5 @@
 import { Scene, Input } from 'phaser'
-import { state } from '../../data'
 
-window.state = state
 class LevelNub extends Scene {
   constructor () {
     super('scene-level-nub')
