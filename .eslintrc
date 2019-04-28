@@ -5,7 +5,7 @@
     "arrow-parens": "off",
     "id-length": "off",
     "new-parens": "off",
-
+    "no-bitwise": "off",
     "import/no-cycle": "off",
     "import/prefer-default-export": "off"
   }
