@@ -6,6 +6,7 @@
     "id-length": "off",
     "new-parens": "off",
     "no-bitwise": "off",
+    "no-magic-numbers": "off",
     "import/no-cycle": "off",
     "import/prefer-default-export": "off"
   }
