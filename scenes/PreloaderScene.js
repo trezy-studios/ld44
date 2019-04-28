@@ -7,11 +7,27 @@ class PreloaderScene extends Scene {
 
   preload () {
     this.load.image('hero', '/static/images/bob.png')
+    this.load.spritesheet('hero-potato', '/static/images/hero-potato.png', {
+      frameWidth: 100,
+      frameHeight: 200,
+    })
     this.load.image('bob-tiles', '/static/images/tileset1.png')
     this.load.tilemapTiledJSON('bob-world', '/static/maps/BobWorld.json')
   }
 
   create () {
+    this.anims.create({
+      key: 'hero-idle',
+      frames: this.anims.generateFrameNames('hero-potato', { start: 0, end: 0 }),
+      frameRate: 3,
+      repeat: -1,
+    })
+    this.anims.create({
+      key: 'hero-run',
+      frames: this.anims.generateFrameNames('hero-potato', { start: 0, end: 1 }),
+      frameRate: 6,
+      repeat: -1,
+    })
     this.scene.start('scene-ui-title')
   }
 }

@@ -23,6 +23,7 @@ class GameComponent extends React.Component {
       physics: {
         default: 'arcade',
         arcade: {
+          debug: true,
           gravity: { y: 200 },
         },
       },

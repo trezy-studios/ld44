@@ -1,4 +1,5 @@
 import { Scene, Input } from 'phaser'
+import Hero from '../../sprites/Hero'
 
 class LevelNub extends Scene {
   constructor () {
@@ -6,10 +7,21 @@ class LevelNub extends Scene {
   }
 
   create () {
+    this.cameras.main.setBackgroundColor('#687')
     this.state = new Map()
-    const playerX = 50
-    const playerY = 50
-    this.state.set('player', this.physics.add.sprite(playerX, playerY, 'hero'))
+    const x = 50
+    const y = 50
+    const width = 100
+    const height = 200
+    const player = new Hero({
+      x,
+      y,
+      width,
+      height,
+      scene: this,
+      texture: 'hero-potato',
+    })
+    this.state.set('player', player)
     this.state.set('keys', this.input.keyboard.createCursorKeys())
     this.WSAD = {
       w: this.input.keyboard.addKey(Input.Keyboard.KeyCodes.W),
@@ -38,15 +50,12 @@ class LevelNub extends Scene {
       solidLayer
     )
     this.state.set('map', map)
-    this.cameras.main.startFollow(this.state.get('player'))
+    this.cameras.main.startFollow(player)
   }
 
   update () {
     const player = this.state.get('player')
-    const keyboard = this.state.get('keys')
-    const velocityX = (Number(keyboard.right.isDown) | Number(this.WSAD.d.isDown)) - (Number(keyboard.left.isDown) | Number(this.WSAD.a.isDown))
-    const magicNumber = 200
-    player.setVelocityX(velocityX * magicNumber)
+    player.update()
   }
 }
 
