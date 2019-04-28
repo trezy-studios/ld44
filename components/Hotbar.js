@@ -1,5 +1,4 @@
 // Module imports
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -21,8 +20,25 @@ class Hotbar extends React.Component {
   static propTypes = {
     horizontalAlignment: PropTypes.string,
     position: PropTypes.string,
+    slots: PropTypes.array.isRequired,
     verticalAlignment: PropTypes.string,
   }
+
+
+
+
+
+  /***************************************************************************\
+    Private Methods
+  \***************************************************************************/
+
+  _renderSlot = (slot, index) => (
+    <li key={index}>
+      {slot && (
+        <span>Item {index + 1}!</span>
+      )}
+    </li>
+  )
 
 
 
@@ -32,14 +48,11 @@ class Hotbar extends React.Component {
     Public Methods
   \***************************************************************************/
 
-  componentDidMount () {
-    console.log('blep')
-  }
-
   render () {
     const {
       horizontalAlignment,
       position,
+      slots,
       verticalAlignment,
     } = this.props
 
@@ -51,11 +64,7 @@ class Hotbar extends React.Component {
         data-vertical-alignment={verticalAlignment}
         type="toolbar">
         <ol className="grid columns-5">
-          <li>Item!</li>
-          <li>Item!</li>
-          <li>Item!</li>
-          <li>Item!</li>
-          <li>Item!</li>
+          {slots.map(this._renderSlot)}
         </ol>
       </menu>
     )

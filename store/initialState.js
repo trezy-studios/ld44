@@ -3,6 +3,8 @@ const initialState = {
     enabled: false,
   },
 
+  hotbars: {},
+
   inventory: {
     items: [],
     totalQuantity: 0,
