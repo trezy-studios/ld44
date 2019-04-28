@@ -6,8 +6,9 @@ class PreloaderScene extends Scene {
   }
 
   preload () {
-    this.load.image('hero', '/static/iamges/bob.png')
-    this.load.image('tile', '/static/iamges/tileset1.png')
+    this.load.image('hero', '/static/images/bob.png')
+    this.load.image('bob-tiles', '/static/images/tileset1.png')
+    this.load.tilemapTiledJSON('bob-world', '/static/maps/BobWorld.json')
   }
 
   create () {
