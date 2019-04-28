@@ -1,28 +1,29 @@
+// Module imports
 import { Scene, Input } from 'phaser'
-import Hero from '../../sprites/Hero'
 
+
+
+
+
+// Local imports
+import { connectNonReactComponent as connect } from '../../store'
+
+
+
+
+
+@connect
 class LevelNub extends Scene {
   constructor () {
     super('scene-level-nub')
   }
 
   create () {
-    this.cameras.main.setBackgroundColor('#687')
-    this.state = new Map()
-    const x = 50
-    const y = 50
-    const width = 100
-    const height = 200
-    const player = new Hero({
-      x,
-      y,
-      width,
-      height,
-      scene: this,
-      texture: 'hero-potato',
-    })
-    this.state.set('player', player)
-    this.state.set('keys', this.input.keyboard.createCursorKeys())
+    this.map = new Map()
+    const playerX = 50
+    const playerY = 50
+    this.map.set('player', this.physics.add.sprite(playerX, playerY, 'hero'))
+    this.map.set('keys', this.input.keyboard.createCursorKeys())
     this.WSAD = {
       w: this.input.keyboard.addKey(Input.Keyboard.KeyCodes.W),
       s: this.input.keyboard.addKey(Input.Keyboard.KeyCodes.S),
@@ -46,17 +47,24 @@ class LevelNub extends Scene {
     const solidLayer = map.createStaticLayer('Tile Layer 1', tileset, 0, 0)
     solidLayer.setCollisionBetween(collisionStart, collisionEnd)
     this.physics.add.collider(
-      this.state.get('player'),
+      this.map.get('player'),
       solidLayer
     )
-    this.state.set('map', map)
-    this.cameras.main.startFollow(player)
+    this.map.set('map', map)
+    this.cameras.main.startFollow(this.map.get('player'))
   }
 
   update () {
-    const player = this.state.get('player')
-    player.update()
+    const player = this.map.get('player')
+    const keyboard = this.map.get('keys')
+    const velocityX = (Number(keyboard.right.isDown) | Number(this.WSAD.d.isDown)) - (Number(keyboard.left.isDown) | Number(this.WSAD.a.isDown))
+    const magicNumber = 200
+    player.setVelocityX(velocityX * magicNumber)
   }
 }
+
+
+
+
 
 export default LevelNub

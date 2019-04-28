@@ -42,9 +42,28 @@ const initStore = preloadedState => {
   return store
 }
 
+const connectNonReactComponent = ConnectedItem => {
+  if (!store) {
+    initStore()
+  }
+
+  return class extends ConnectedItem {
+    /* eslint-disable class-methods-use-this */
+    get state () {
+      return store.getState()
+    }
+
+    get store () {
+      return store
+    }
+    /* eslint-enable */
+  }
+}
+
 
 
 export {
   actions,
+  connectNonReactComponent,
   initStore,
 }
