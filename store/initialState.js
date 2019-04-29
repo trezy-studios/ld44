@@ -11,6 +11,8 @@ const initialState = {
     totalSlots: 16,
     totalWeight: 0,
   },
+
+  saves: {},
 }
 
 
