@@ -11,12 +11,12 @@
 
   header {
     color: black;
-    font-size: 4rem;
+    font-size: 2em;
     text-shadow: 0.2rem 0.2rem 0.2rem rgba(255, 255, 255, 0.5);
   }
 
   menu {
-    width: 50rem;
+    width: 30vw;
 
     &:hover button {
       opacity: 0.6;
