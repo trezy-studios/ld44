@@ -1,0 +1,50 @@
+.game-menu {
+  background-image: url(/static/titlescreen-backgrounds/fortress.png);
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10vw;
+  position: relative;
+
+  header {
+    color: black;
+    font-size: 4rem;
+    text-shadow: 0.2rem 0.2rem 0.2rem rgba(255, 255, 255, 0.5);
+  }
+
+  menu {
+    width: 50rem;
+
+    &:hover button {
+      opacity: 0.6;
+    }
+
+    li:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    button {
+      background-image: linear-gradient(
+        to left,
+        transparent,
+        rgba(0, 0, 0, 0.5) 60%
+      );
+      padding: 0.5rem 2rem;
+      transition-duration: 0.2s;
+      transition-property: opacity;
+      white-space: nowrap;
+      width: 100%;
+
+      &[disabled] {
+        opacity: 0.5 !important;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

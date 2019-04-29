@@ -1,0 +1,15 @@
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}

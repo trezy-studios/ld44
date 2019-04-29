@@ -13,7 +13,10 @@ import {
   actions,
 } from '../store'
 import { isBrowser } from '../helpers'
-import { Hotbar } from '../components'
+import {
+  Hotbar,
+  TitleScreen,
+} from '../components'
 
 
 
@@ -23,7 +26,13 @@ import { Hotbar } from '../components'
 const mapDispatchToProps = dispatch => bindActionCreators({
   addHotbar: actions.hotbars.addHotbar,
 }, dispatch)
-const mapStateToProps = ({ hotbars }) => ({ hotbars })
+const mapStateToProps = ({
+  hotbars,
+  saves,
+}) => ({
+  hotbars,
+  saves,
+})
 
 
 
@@ -38,6 +47,7 @@ class Game extends React.Component {
   static propTypes = {
     addHotbar: PropTypes.func.isRequired,
     hotbars: PropTypes.object.isRequired,
+    saves: PropTypes.object.isRequired,
   }
 
 
@@ -74,7 +84,16 @@ class Game extends React.Component {
   }
 
   render () {
-    const { hotbars } = this.props
+    const {
+      hotbars,
+      saves,
+    } = this.props
+
+    if (!Object.values(saves).length) {
+      return (
+        <TitleScreen />
+      )
+    }
 
     if (isBrowser()) {
       /* eslint-disable global-require */
