@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "ghostslayer989",
+      "name": "ghostslayer989",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/45863583?v=4",
+      "profile": "https://github.com/ghostslayer989",
+      "contributions": [
+        "design"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "ld44",
+  "projectOwner": "trezy-studios",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
