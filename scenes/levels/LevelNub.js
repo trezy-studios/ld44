@@ -7,6 +7,7 @@ import { Scene, Input } from 'phaser'
 
 // Local imports
 import { connectNonReactComponent as connect } from '../../store'
+import Hero from '../../sprites/Hero'
 
 
 
@@ -19,10 +20,16 @@ class LevelNub extends Scene {
   }
 
   create () {
+    this.cameras.main.setBackgroundColor('#738')
     this.map = new Map()
-    const playerX = 50
-    const playerY = 50
-    this.map.set('player', this.physics.add.sprite(playerX, playerY, 'hero'))
+    const x = 50
+    const y = 50
+    const player = new Hero({
+      x,
+      y,
+      scene: this,
+    })
+    this.map.set('player', player)
     this.map.set('keys', this.input.keyboard.createCursorKeys())
     this.WSAD = {
       w: this.input.keyboard.addKey(Input.Keyboard.KeyCodes.W),
@@ -56,10 +63,7 @@ class LevelNub extends Scene {
 
   update () {
     const player = this.map.get('player')
-    const keyboard = this.map.get('keys')
-    const velocityX = (Number(keyboard.right.isDown) | Number(this.WSAD.d.isDown)) - (Number(keyboard.left.isDown) | Number(this.WSAD.a.isDown))
-    const magicNumber = 200
-    player.setVelocityX(velocityX * magicNumber)
+    player.update()
   }
 }
 
