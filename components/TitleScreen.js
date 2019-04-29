@@ -18,6 +18,7 @@ import { actions } from '../store'
 // Local constants
 const mapDispatchToProps = dispatch => bindActionCreators({
   initializeGameState: actions.saves.initializeGameState,
+  loadMemories: actions.memories.loadMemories,
 }, dispatch)
 const mapStateToProps = ({ saves }) => ({ saves })
 
@@ -35,7 +36,38 @@ class TitleScreen extends React.Component {
 
   static propTypes = {
     initializeGameState: PropTypes.func.isRequired,
+    loadMemories: PropTypes.func.isRequired,
     saves: PropTypes.object.isRequired,
+  }
+
+
+
+
+  /***************************************************************************\
+    Local Properties
+  \***************************************************************************/
+
+  state = {
+    loading: false,
+  }
+
+
+
+
+
+  /***************************************************************************\
+    Private Methods
+  \***************************************************************************/
+
+  _preload = async () => {
+    const {
+      initializeGameState,
+      loadMemories,
+    } = this.props
+
+    await loadMemories()
+
+    initializeGameState()
   }
 
 
@@ -47,10 +79,8 @@ class TitleScreen extends React.Component {
   \***************************************************************************/
 
   render () {
-    const {
-      initializeGameState,
-      saves,
-    } = this.props
+    const { saves } = this.props
+    const { loading } = this.state
 
     return (
       <main className="game-menu">
@@ -58,31 +88,37 @@ class TitleScreen extends React.Component {
           <h1>Cornerstone</h1>
         </header>
 
-        <menu type="toolbar">
-          <ul>
-            <li>
-              <button
-                onClick={initializeGameState}
-                type="button">
-                New Game
-              </button>
-            </li>
+        {loading && (
+          'Loading...'
+        )}
 
-            <li>
-              <button
-                disabled={!Object.values(saves).length}
-                type="button">
-                Load Game
-              </button>
-            </li>
+        {!loading && (
+          <menu type="toolbar">
+            <ul>
+              <li>
+                <button
+                  onClick={this._preload}
+                  type="button">
+                  New Game
+                </button>
+              </li>
 
-            <li>
-              <button type="button">
-                Settings
-              </button>
-            </li>
-          </ul>
-        </menu>
+              <li>
+                <button
+                  disabled={!Object.values(saves).length}
+                  type="button">
+                  Load Game
+                </button>
+              </li>
+
+              <li>
+                <button type="button">
+                  Settings
+                </button>
+              </li>
+            </ul>
+          </menu>
+        )}
       </main>
     )
   }

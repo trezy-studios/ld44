@@ -1,4 +1,5 @@
 // Module imports
+import LocalForage from 'localforage'
 import uuid from 'uuid/v4'
 
 
@@ -13,7 +14,13 @@ import actionTypes from '../actionTypes'
 
 
 const addMemory = () => dispatch => {
-  const id = uuid()
+  const id = uuid();
+
+  (async () => {
+    const memoryIDs = await LocalForage.getItem('memories')
+    memoryIDs.push(id)
+    await LocalForage.setItem('memories', memoryIDs)
+  })()
 
   dispatch({
     payload: { id },
@@ -21,6 +28,19 @@ const addMemory = () => dispatch => {
   })
 
   return id
+}
+
+
+
+
+
+const loadMemories = () => async dispatch => {
+  const memoryIDs = await LocalForage.getItem('memories')
+
+  dispatch({
+    payload: { ids: memoryIDs },
+    type: actionTypes.LOAD_MEMORIES,
+  })
 }
 
 
@@ -41,6 +61,7 @@ const stopMemoryCapture = () => dispatch => dispatch({ type: actionTypes.STOP_ME
 
 export {
   addMemory,
+  loadMemories,
   startMemoryCapture,
   stopMemoryCapture,
 }

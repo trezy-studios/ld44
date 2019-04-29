@@ -17,16 +17,22 @@ const memoriesReducer = (state = initialState.memories, action) => {
   }
 
   switch (type) {
+    case actionTypes.ADD_MEMORY:
+      newMemoryStore[payload.id] = payload
+      return newState
+
+    case actionTypes.LOAD_MEMORIES:
+      payload.ids.forEach(id => {
+        newMemoryStore[id] = { id }
+      })
+      return newState
+
     case actionTypes.START_MEMORY_CAPTURE:
       newState.shouldStartCapture = true
       return newState
 
     case actionTypes.STOP_MEMORY_CAPTURE:
       newState.shouldStartCapture = false
-      return newState
-
-    case actionTypes.ADD_MEMORY:
-      newMemoryStore[payload.id] = payload
       return newState
 
     default:

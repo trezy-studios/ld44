@@ -5,6 +5,7 @@ import Phaser, {
 } from 'phaser'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import LocalForage from 'localforage'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -44,7 +45,7 @@ class GameComponent extends React.Component {
   \***************************************************************************/
 
   static propTypes = {
-    // addMemory: PropTypes.func.isRequired,
+    addMemory: PropTypes.func.isRequired,
     shouldStartCapture: PropTypes.bool.isRequired,
     stopMemoryCapture: PropTypes.func.isRequired,
   }
@@ -84,16 +85,24 @@ class GameComponent extends React.Component {
   // triggered the memory. To do that, we set a timeout and don't grab the
   // recorded data until a while after the event.
   _captureMemory = () => {
-    const { stopMemoryCapture } = this.props
+    const {
+      addMemory,
+      stopMemoryCapture,
+    } = this.props
 
     const wait = config.MEMORY.MAX_DURATION
 
-    console.log('_captureMemory: Started...')
-
-    setTimeout(() => {
+    setTimeout(async () => {
       const memory = new Blob([...this.recordedBlobs], { type: this.captureMimetype })
-      console.log('_captureMemory: Done.')
-      console.log('memory', memory)
+      const memoryID = addMemory()
+
+      const memoryAsDataURL = await new Promise(resolve => {
+        const fileReader = new FileReader()
+        fileReader.onload = ({ target: { result } }) => resolve(result)
+        fileReader.readAsDataURL(memory)
+      })
+
+      LocalForage.setItem(memoryID, memoryAsDataURL)
     }, wait)
 
     stopMemoryCapture()

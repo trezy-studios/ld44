@@ -11,6 +11,7 @@ import LocalForage from 'localforage'
 // Component imports
 import { AppLayout } from '../components'
 import { initStore } from '../store'
+import { isBrowser } from '../helpers'
 import * as faIcons from '../helpers/faIconLibrary'
 
 
@@ -37,8 +38,27 @@ faLibrary.add(faIcons)
 @withRedux(initStore)
 class NextApp extends App {
   componentDidMount () {
-    if (typeof window !== 'undefined') {
-      const rootElement = document.querySelector('html')
+    if (isBrowser()) {
+      const rootElement = document.querySelector('html');
+
+      (async () => {
+        const keysToFill = [
+          {
+            key: 'memories',
+            defaultValue: [],
+          },
+        ]
+        const promises = keysToFill.map(({ key }) => LocalForage.getItem(key))
+        const results = await Promise.all(promises)
+
+        results.forEach((value, index) => {
+          const { defaultValue, key } = keysToFill[index]
+
+          if (!value) {
+            LocalForage.setItem(key, defaultValue)
+          }
+        })
+      })()
 
       if (!rootElement.classList.contains('animation-ready')) {
         rootElement.classList.add('animation-ready')
@@ -50,7 +70,7 @@ class NextApp extends App {
     super(props)
 
     LocalForage.config({
-      name: 'Example.com',
+      name: 'Cornerstone',
       storeName: 'webStore',
     })
   }
