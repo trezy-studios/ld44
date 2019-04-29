@@ -16,6 +16,17 @@
         "ideas",
         "review"
       ]
+    },
+    {
+      "login": "IanSSenne",
+      "name": "IanSSenne",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/48780301?v=4",
+      "profile": "https://github.com/IanSSenne",
+      "contributions": [
+        "code",
+        "ideas",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
