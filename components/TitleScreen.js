@@ -10,7 +10,6 @@ import React from 'react'
 
 // Local imports
 import { actions } from '../store'
-import { PageWrapper } from '.'
 
 
 
@@ -54,7 +53,7 @@ class TitleScreen extends React.Component {
     } = this.props
 
     return (
-      <PageWrapper title="Game Menu">
+      <main className="game-menu">
         <header>
           <h1>Cornerstone</h1>
         </header>
@@ -68,6 +67,7 @@ class TitleScreen extends React.Component {
                 New Game
               </button>
             </li>
+
             <li>
               <button
                 disabled={!Object.values(saves).length}
@@ -75,6 +75,7 @@ class TitleScreen extends React.Component {
                 Load Game
               </button>
             </li>
+
             <li>
               <button type="button">
                 Settings
@@ -82,7 +83,7 @@ class TitleScreen extends React.Component {
             </li>
           </ul>
         </menu>
-      </PageWrapper>
+      </main>
     )
   }
 }

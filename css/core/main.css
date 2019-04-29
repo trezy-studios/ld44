@@ -1,4 +1,8 @@
 main {
+  animation-delay: var(--initial-fade-delay);
+  animation-duration: var(--initial-fade-duration);
+  animation-fill-mode: both;
+  animation-name: fade-in;
   flex-grow: 1;
   height: 100vh;
   width: 100vw;

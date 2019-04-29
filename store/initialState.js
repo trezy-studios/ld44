@@ -1,4 +1,6 @@
 const initialState = {
+  currentGameStateID: null,
+
   debug: {
     enabled: false,
   },
