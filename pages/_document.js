@@ -14,7 +14,7 @@ import { Favicon } from '../components/Favicon'
 
 
 // Component constants
-const fonts = ['Ubuntu']
+const fonts = ['Cinzel Decorative']
 
 
 
