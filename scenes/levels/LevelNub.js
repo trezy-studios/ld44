@@ -24,8 +24,9 @@ class LevelNub extends Scene {
 
   create = () => {
     this.cameras.main.setBackgroundColor('#738')
+    this.cameras.main.setBounds(0, 0, 30000, 4000)
     this.map = new Map()
-    const x = 50
+    const x = 150
     const y = 50
     const potsArr = []
     for (let px = 200; px <= 2000; px += 200) {
@@ -50,7 +51,7 @@ class LevelNub extends Scene {
       a: this.input.keyboard.addKey(Input.Keyboard.KeyCodes.A),
       d: this.input.keyboard.addKey(Input.Keyboard.KeyCodes.D),
     }
-    const key = 'bob-world'
+    const key = 'new-world'
     const tileWidth = 100
     const tileHeight = 100
     const map = this.make.tilemap({
@@ -59,8 +60,8 @@ class LevelNub extends Scene {
       tileHeight,
     })
     const tileset = map.addTilesetImage(
-      'BobWorld',
-      'bob-tiles'
+      'Tileset',
+      'tile-image'
     )
     const collisionStart = 1
     const collisionEnd = 10

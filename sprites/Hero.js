@@ -66,7 +66,7 @@ class Hero extends Container {
     const { a, d, w, s } = WSAD
     const isTouchingGround = (this.body.blocked.down)
     const velocityX = (Number(right.isDown) | Number(d.isDown)) - (Number(left.isDown) | Number(a.isDown))
-    const magicNumber = 200
+    const magicNumber = 500
     if (isAttacking) {
       core.setFrame(5)
       swordArm.setFrame(1)

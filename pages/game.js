@@ -71,12 +71,12 @@ class Game extends React.Component {
     const { setControlState } = this.props
 
     document.addEventListener('keydown', ({ key }) => {
-      console.log('keydown')
+      // console.log('keydown')
       setControlState(key.toLowerCase(), true)
     })
 
     document.addEventListener('keyup', ({ key }) => {
-      console.log('keyup')
+      // console.log('keyup')
       setControlState(key.toLowerCase(), false)
     })
   }

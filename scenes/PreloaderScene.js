@@ -21,6 +21,8 @@ class PreloaderScene extends Scene {
     })
     this.load.image('bob-tiles', '/static/images/tileset1.png')
     this.load.tilemapTiledJSON('bob-world', '/static/maps/BobWorld.json')
+    this.load.image('tile-image', '/static/images/basic-world-tiles.png')
+    this.load.tilemapTiledJSON('new-world', '/static/maps/ANewWorld.json')
   }
 
   create () {
