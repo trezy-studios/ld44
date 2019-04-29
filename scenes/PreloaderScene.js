@@ -7,9 +7,13 @@ class PreloaderScene extends Scene {
 
   preload () {
     this.load.image('hero', '/static/images/bob.png')
-    this.load.spritesheet('hero-potato', '/static/images/hero-potato.png', {
+    this.load.spritesheet('hero-potato', '/static/images/hero-potato-noarms.png', {
       frameWidth: 100,
       frameHeight: 200,
+    })
+    this.load.spritesheet('sword-arm', '/static/images/sword-arm.png', {
+      frameWidth: 200,
+      frameHeight: 180,
     })
     this.load.image('bob-tiles', '/static/images/tileset1.png')
     this.load.tilemapTiledJSON('bob-world', '/static/maps/BobWorld.json')
