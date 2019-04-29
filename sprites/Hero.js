@@ -15,7 +15,8 @@ class Hero extends Container {
     const swordArmTexture = 'sword-arm'
     const jumpHeight = 300
     const core = scene.add.sprite(0, 0, texture)
-    const swordArm = scene.add.sprite(0, 0, swordArmTexture)
+    const swordArm = scene.physics.add.sprite(0, 0, swordArmTexture)
+    swordArm.body.setAllowGravity(false)
     swordArm.setOrigin(0.41, 0.47)
     swordArm.setPosition((width / 2), (height / 2))
     core.setOrigin(0, 0)
@@ -43,6 +44,10 @@ class Hero extends Container {
 
     this.isAttacking = false
     this.isSwinging = false
+  }
+
+  getSwordArm () {
+    return this.swordArm
   }
 
   update () {

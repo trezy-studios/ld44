@@ -24,11 +24,21 @@ class LevelNub extends Scene {
     this.map = new Map()
     const x = 50
     const y = 50
+    const potsArr = []
+    for (let px = 200; px <= 2000; px += 200) {
+      potsArr.push(
+        this.physics.add.sprite(px, 50, 'pot-smash').setScale(0.5)
+      )
+    }
+    const pots = this.physics.add.group(potsArr)
+    pots.setDepth(1)
     const player = new Hero({
       x,
       y,
       scene: this,
     })
+    player.setDepth(2)
+    this.map.set('pots', pots)
     this.map.set('player', player)
     this.map.set('keys', this.input.keyboard.createCursorKeys())
     this.WSAD = {
@@ -57,8 +67,28 @@ class LevelNub extends Scene {
       this.map.get('player'),
       solidLayer
     )
+    this.physics.add.collider(
+      pots,
+      solidLayer,
+    )
+    this.physics.add.overlap(
+      player.getSwordArm(),
+      pots,
+      this.breakPot.bind(this)
+    )
+    console.log(player)
     this.map.set('map', map)
     this.cameras.main.startFollow(this.map.get('player'))
+
+    this.map.set('monies', 0)
+  }
+
+  breakPot (swordArm, potInQuestion) {
+    if (swordArm.frame.name === 1) {
+      potInQuestion.anims.play('pot-smash-smash', true)
+      const monies = this.map.get('monies')
+      this.map.set('monies', monies)
+    }
   }
 
   update () {

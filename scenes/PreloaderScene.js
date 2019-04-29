@@ -15,6 +15,10 @@ class PreloaderScene extends Scene {
       frameWidth: 200,
       frameHeight: 180,
     })
+    this.load.spritesheet('pot-smash', '/static/images/pot-smash.png', {
+      frameWidth: 100,
+      frameHeight: 150,
+    })
     this.load.image('bob-tiles', '/static/images/tileset1.png')
     this.load.tilemapTiledJSON('bob-world', '/static/maps/BobWorld.json')
   }
@@ -43,6 +47,12 @@ class PreloaderScene extends Scene {
       frames: this.anims.generateFrameNames('hero-potato', { start: 2, end: 2 }),
       frameRate: 6,
       repeat: -1,
+    })
+    this.anims.create({
+      key: 'pot-smash-smash',
+      frames: this.anims.generateFrameNames('pot-smash', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: 0,
     })
     this.scene.start('scene-ui-title')
   }
