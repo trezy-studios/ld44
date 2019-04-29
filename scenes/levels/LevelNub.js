@@ -19,7 +19,7 @@ class LevelNub extends Scene {
     super('scene-level-nub')
   }
 
-  create () {
+  create = () => {
     this.cameras.main.setBackgroundColor('#738')
     this.map = new Map()
     const x = 50
@@ -74,7 +74,7 @@ class LevelNub extends Scene {
     this.physics.add.overlap(
       player.getSwordArm(),
       pots,
-      this.breakPot.bind(this)
+      this.breakPot
     )
     this.map.set('map', map)
     this.cameras.main.startFollow(this.map.get('player'))
@@ -82,7 +82,7 @@ class LevelNub extends Scene {
     this.map.set('monies', 0)
   }
 
-  breakPot (swordArm, potInQuestion) {
+  breakPot = (swordArm, potInQuestion) => {
     if (swordArm.frame.name === 1 && potInQuestion.frame.name === 0) {
       potInQuestion.anims.play('pot-smash-smash', true)
       const monies = this.map.get('monies')
@@ -90,7 +90,7 @@ class LevelNub extends Scene {
     }
   }
 
-  update () {
+  update = () => {
     const player = this.map.get('player')
     player.update()
   }

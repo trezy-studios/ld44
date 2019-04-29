@@ -14,6 +14,8 @@ const initialState = {
     totalWeight: 0,
   },
 
+  memories: {},
+
   saves: {},
 }
 
