@@ -28,6 +28,18 @@ class PreloaderScene extends Scene {
       frameRate: 6,
       repeat: -1,
     })
+    this.anims.create({
+      key: 'hero-fall',
+      frames: this.anims.generateFrameNames('hero-potato', { start: 3, end: 3 }),
+      frameRate: 6,
+      repeat: -1,
+    })
+    this.anims.create({
+      key: 'hero-jump',
+      frames: this.anims.generateFrameNames('hero-potato', { start: 2, end: 2 }),
+      frameRate: 6,
+      repeat: -1,
+    })
     this.scene.start('scene-ui-title')
   }
 }
