@@ -10,6 +10,6 @@ button {
   padding: 0;
 
   &[disabled] {
-    cursor: not-allowed;
+    cursor: initial;
   }
 }
