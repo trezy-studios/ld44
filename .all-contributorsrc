@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "IanSSenne",
+      "name": "IanSSenne",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/48780301?v=4",
+      "profile": "https://github.com/IanSSenne",
+      "contributions": [
+        "code",
+        "ideas",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "ld44",
+  "projectOwner": "trezy-studios",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
