@@ -32,7 +32,10 @@ class AppLayout extends React.Component {
   \***************************************************************************/
 
   static propTypes = {
-    Component: PropTypes.func.isRequired,
+    Component: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+    ]).isRequired,
     pageProps: PropTypes.object.isRequired,
     statusCode: PropTypes.number.isRequired,
   }
