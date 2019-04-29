@@ -25,6 +25,7 @@ import {
 // Local constants
 const mapDispatchToProps = dispatch => bindActionCreators({
   addHotbar: actions.hotbars.addHotbar,
+  setControlState: actions.controls.setControlState,
 }, dispatch)
 const mapStateToProps = ({
   currentGameStateID,
@@ -55,6 +56,7 @@ class Game extends React.Component {
     currentGameStateID: PropTypes.string,
     hotbars: PropTypes.object.isRequired,
     saves: PropTypes.object.isRequired,
+    setControlState: PropTypes.func.isRequired,
   }
 
 
@@ -64,6 +66,20 @@ class Game extends React.Component {
   /***************************************************************************\
     Private Methods
   \***************************************************************************/
+
+  _bindEvents = () => {
+    const { setControlState } = this.props
+
+    document.addEventListener('keydown', ({ key }) => {
+      console.log('keydown')
+      setControlState(key.toLowerCase(), true)
+    })
+
+    document.addEventListener('keyup', ({ key }) => {
+      console.log('keyup')
+      setControlState(key.toLowerCase(), false)
+    })
+  }
 
   _renderHotbar = hotbar => (
     <Hotbar
@@ -88,6 +104,8 @@ class Game extends React.Component {
     if (!Object.values(hotbars).length) {
       addHotbar('middle', 'bottom', 5)
     }
+
+    this._bindEvents()
   }
 
   render () {

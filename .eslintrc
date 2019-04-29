@@ -10,6 +10,7 @@
 
     "import/no-cycle": "off",
     "import/prefer-default-export": "off",
+
     "react/jsx-handler-names": "off"
   }
 }

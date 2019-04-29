@@ -32,7 +32,13 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   addMemory: actions.memories.addMemory,
   stopMemoryCapture: actions.memories.stopMemoryCapture,
 }, dispatch)
-const mapStateToProps = ({ memories: { shouldStartCapture } }) => ({ shouldStartCapture })
+const mapStateToProps = ({
+  controls,
+  memories: { shouldStartCapture },
+}) => ({
+  controls,
+  shouldStartCapture,
+})
 
 
 
@@ -46,6 +52,7 @@ class GameComponent extends React.Component {
 
   static propTypes = {
     addMemory: PropTypes.func.isRequired,
+    controls: PropTypes.object.isRequired,
     shouldStartCapture: PropTypes.bool.isRequired,
     stopMemoryCapture: PropTypes.func.isRequired,
   }
@@ -69,6 +76,8 @@ class GameComponent extends React.Component {
     'video/webm;codecs=h264',
     'video/mpeg',
   ]
+
+  pausedScenes = []
 
   recordedBlobs = []
 
@@ -187,11 +196,35 @@ class GameComponent extends React.Component {
   }
 
   componentDidUpdate (prevProps) {
-    const { shouldStartCapture } = this.props
+    const {
+      controls,
+      shouldStartCapture,
+    } = this.props
 
     if (prevProps.shouldStartCapture !== shouldStartCapture) {
       if (shouldStartCapture) {
         this._captureMemory()
+      }
+    }
+
+    if (prevProps.controls.pause.isActive !== controls.pause.isActive) {
+      if (controls.pause.isActive) {
+        const activeScenes = this.game.scene.getScenes(true)
+
+        activeScenes.forEach(({ scene }) => {
+          if (!this.pausedScenes.includes(scene)) {
+            this.pausedScenes.push(scene)
+            scene.pause()
+          }
+        })
+      } else {
+        this.pausedScenes.forEach(scene => {
+          if (!this.game.scene.isActive(scene)) {
+            scene.resume()
+          }
+        })
+
+        this.pausedScenes = []
       }
     }
   }

@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import controls from './controls'
 import currentGameStateID from './currentGameStateID'
 import debug from './debug'
 import hotbars from './hotbars'
@@ -11,6 +12,7 @@ import saves from './saves'
 
 
 export default combineReducers({
+  controls,
   currentGameStateID,
   debug,
   hotbars,

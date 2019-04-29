@@ -1,4 +1,11 @@
 const initialState = {
+  controls: {
+    pause: {
+      isActive: false,
+      type: 'toggle',
+    },
+  },
+
   currentGameStateID: null,
 
   debug: {
