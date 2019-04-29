@@ -76,7 +76,6 @@ class LevelNub extends Scene {
       pots,
       this.breakPot.bind(this)
     )
-    console.log(player)
     this.map.set('map', map)
     this.cameras.main.startFollow(this.map.get('player'))
 
@@ -84,10 +83,10 @@ class LevelNub extends Scene {
   }
 
   breakPot (swordArm, potInQuestion) {
-    if (swordArm.frame.name === 1) {
+    if (swordArm.frame.name === 1 && potInQuestion.frame.name === 0) {
       potInQuestion.anims.play('pot-smash-smash', true)
       const monies = this.map.get('monies')
-      this.map.set('monies', monies)
+      this.map.set('monies', monies + 1)
     }
   }
 
