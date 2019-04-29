@@ -12,6 +12,10 @@ const addItem = item => dispatch => {
     processedItem.quantity = 1
   }
 
+  if (!processedItem.quality) {
+    processedItem.quality = 'common'
+  }
+
   dispatch({
     payload: { item: processedItem },
     type: actionTypes.ADD_ITEM,

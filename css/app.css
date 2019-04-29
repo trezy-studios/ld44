@@ -6,6 +6,14 @@
 
 
 
+/* Animations */
+
+@import './animations/*.css';
+
+
+
+
+
 /* Core */
 
 @import './core/root';
