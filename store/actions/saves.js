@@ -15,8 +15,6 @@ import actionTypes from '../actionTypes'
 const initializeGameState = () => dispatch => {
   const id = uuid()
 
-  console.log('initializeGameState', initializeGameState)
-
   dispatch({
     payload: { id },
     type: actionTypes.INITIALIZE_GAME_STATE,
