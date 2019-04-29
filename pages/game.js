@@ -27,9 +27,11 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   addHotbar: actions.hotbars.addHotbar,
 }, dispatch)
 const mapStateToProps = ({
+  currentGameStateID,
   hotbars,
   saves,
 }) => ({
+  currentGameStateID,
   hotbars,
   saves,
 })
@@ -44,8 +46,13 @@ class Game extends React.Component {
     Static Properties
   \***************************************************************************/
 
+  static defaultProps = {
+    currentGameStateID: '',
+  }
+
   static propTypes = {
     addHotbar: PropTypes.func.isRequired,
+    currentGameStateID: PropTypes.string,
     hotbars: PropTypes.object.isRequired,
     saves: PropTypes.object.isRequired,
   }
@@ -85,11 +92,11 @@ class Game extends React.Component {
 
   render () {
     const {
+      currentGameStateID,
       hotbars,
-      saves,
     } = this.props
 
-    if (!Object.values(saves).length) {
+    if (!currentGameStateID) {
       return (
         <TitleScreen />
       )
