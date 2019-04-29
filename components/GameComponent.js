@@ -177,7 +177,7 @@ class GameComponent extends React.Component {
         default: 'arcade',
         arcade: {
           debug: true,
-          gravity: { y: 400 },
+          gravity: { y: 700 },
         },
       },
       scale: {
