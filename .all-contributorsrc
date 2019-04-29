@@ -27,6 +27,15 @@
         "ideas",
         "review"
       ]
+    },
+    {
+      "login": "ghostslayer989",
+      "name": "ghostslayer989",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/45863583?v=4",
+      "profile": "https://github.com/ghostslayer989",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
