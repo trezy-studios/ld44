@@ -49,6 +49,15 @@
         "ideas",
         "review"
       ]
+    },
+    {
+      "login": "MonsieurBasile",
+      "name": "MonsieurBasile",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/50092907?v=4",
+      "profile": "https://github.com/MonsieurBasile",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
