@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "saricden",
+      "name": "Kirk",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7004280?v=4",
+      "profile": "http://saricden.com/",
+      "contributions": [
+        "code",
+        "design",
+        "ideas",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "ld44",
+  "projectOwner": "trezy-studios",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
