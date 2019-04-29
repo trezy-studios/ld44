@@ -6,7 +6,10 @@ import { Scene, Input } from 'phaser'
 
 
 // Local imports
-import { connectNonReactComponent as connect } from '../../store'
+import {
+  actions,
+  connectNonReactComponent as connect,
+} from '../../store'
 import Hero from '../../sprites/Hero'
 
 
@@ -83,8 +86,16 @@ class LevelNub extends Scene {
   }
 
   breakPot = (swordArm, potInQuestion) => {
+    const { dispatch } = this.store
+    const { startMemoryCapture } = actions.memories
+
     if (swordArm.frame.name === 1 && potInQuestion.frame.name === 0) {
+      if (!potInQuestion.anims.isPlaying) {
+        dispatch(startMemoryCapture())
+      }
+
       potInQuestion.anims.play('pot-smash-smash', true)
+
       const monies = this.map.get('monies')
       this.map.set('monies', monies + 1)
     }

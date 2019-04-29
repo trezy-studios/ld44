@@ -12,29 +12,35 @@ import actionTypes from '../actionTypes'
 
 
 
-const captureMemory = () => dispatch => {
-  // const processedItem = { ...item }
-
-  // if (!processedItem.quantity) {
-  //   processedItem.quantity = 1
-  // }
-
-  // if (!processedItem.quality) {
-  //   processedItem.quality = 'common'
-  // }
+const addMemory = () => dispatch => {
+  const id = uuid()
 
   dispatch({
-    payload: {
-      id: uuid(),
-    },
-    type: actionTypes.CAPTURE_MEMORY,
+    payload: { id },
+    type: actionTypes.ADD_MEMORY,
   })
+
+  return id
 }
 
 
 
 
 
+const startMemoryCapture = () => dispatch => dispatch({ type: actionTypes.START_MEMORY_CAPTURE })
+
+
+
+
+
+const stopMemoryCapture = () => dispatch => dispatch({ type: actionTypes.STOP_MEMORY_CAPTURE })
+
+
+
+
+
 export {
-  captureMemory,
+  addMemory,
+  startMemoryCapture,
+  stopMemoryCapture,
 }

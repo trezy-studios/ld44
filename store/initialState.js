@@ -14,7 +14,10 @@ const initialState = {
     totalWeight: 0,
   },
 
-  memories: {},
+  memories: {
+    memoryStore: {},
+    shouldStartCapture: false,
+  },
 
   saves: {},
 }

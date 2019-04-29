@@ -1,6 +1,6 @@
 const config = {
   MEMORY: {
-    MAX_DURATION: 5000,
+    MAX_DURATION: 10000,
     MAX_INSTANCES: 5,
   },
   ERRORS: {

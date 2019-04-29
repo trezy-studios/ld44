@@ -3,19 +3,56 @@ import Phaser, {
   Game,
   WEBGL,
 } from 'phaser'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import PropTypes from 'prop-types'
 import React from 'react'
 
-// Boot scenes
+
+
+
+
+// Local imports
+import {
+  actions,
+} from '../store'
+import config from '../game.config'
 import BootScene from '../scenes/BootScene'
 import PreloaderScene from '../scenes/PreloaderScene'
-
-// UI scenes
 import TitleScene from '../scenes/ui/TitleScene'
-
-// Levels / areas
 import LevelNub from '../scenes/levels/LevelNub'
 
+
+
+
+
+// Local constants
+const mapDispatchToProps = dispatch => bindActionCreators({
+  addMemory: actions.memories.addMemory,
+  stopMemoryCapture: actions.memories.stopMemoryCapture,
+}, dispatch)
+const mapStateToProps = ({ memories: { shouldStartCapture } }) => ({ shouldStartCapture })
+
+
+
+
+
+@connect(mapStateToProps, mapDispatchToProps)
 class GameComponent extends React.Component {
+  /***************************************************************************\
+    Static Properties
+  \***************************************************************************/
+
+  static propTypes = {
+    // addMemory: PropTypes.func.isRequired,
+    shouldStartCapture: PropTypes.bool.isRequired,
+    stopMemoryCapture: PropTypes.func.isRequired,
+  }
+
+
+
+
+
   /***************************************************************************\
     Local Properties
   \***************************************************************************/
@@ -43,11 +80,13 @@ class GameComponent extends React.Component {
   \***************************************************************************/
 
   // `_captureMemory` is triggered when we want to store a memory, but we
-  // actually want to save the 15 seconds of action on either side of the event
-  // that triggered the memory. To do that, we set a timeout and don't grap the
-  // recorded data until 15 seconds after the event.
+  // actually want to save the action on either side of the event that
+  // triggered the memory. To do that, we set a timeout and don't grab the
+  // recorded data until a while after the event.
   _captureMemory = () => {
-    const wait = 15 * 1000
+    const { stopMemoryCapture } = this.props
+
+    const wait = config.MEMORY.MAX_DURATION
 
     console.log('_captureMemory: Started...')
 
@@ -56,11 +95,13 @@ class GameComponent extends React.Component {
       console.log('_captureMemory: Done.')
       console.log('memory', memory)
     }, wait)
+
+    stopMemoryCapture()
   }
 
   _handleMediaRecorderData = ({ data }) => {
-    // Clamp the recording to 30 seconds
-    while (this.recordedBlobs.length >= 300) {
+    // Clamp the recording so it's never longer than our max duration
+    while (this.recordedBlobs.length >= (config.MEMORY.MAX_DURATION / 1000)) {
       this.recordedBlobs.shift()
     }
 
@@ -111,8 +152,6 @@ class GameComponent extends React.Component {
   componentDidMount () {
     this._startRecording()
 
-    setInterval(this._captureMemory, 15000)
-
     this.game = new Game({
       canvas: this.canvasElement,
       type: WEBGL,
@@ -136,6 +175,16 @@ class GameComponent extends React.Component {
         LevelNub,
       ],
     })
+  }
+
+  componentDidUpdate (prevProps) {
+    const { shouldStartCapture } = this.props
+
+    if (prevProps.shouldStartCapture !== shouldStartCapture) {
+      if (shouldStartCapture) {
+        this._captureMemory()
+      }
+    }
   }
 
   constructor (props) {
