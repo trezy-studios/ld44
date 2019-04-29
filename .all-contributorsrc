@@ -36,6 +36,19 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "trezy",
+      "name": "Trezy",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/442980?v=4",
+      "profile": "http://trezy.com",
+      "contributions": [
+        "code",
+        "infra",
+        "projectManagement",
+        "ideas",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
