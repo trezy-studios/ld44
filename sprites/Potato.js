@@ -2,26 +2,24 @@ import { GameObjects, Input } from 'phaser'
 
 const { Container } = GameObjects
 
-class Hero extends Container {
+class Potato extends Container {
   constructor (config) {
     const {
       x,
       y,
       scene,
     } = config
-    // const width = 186
-    const width = 60
-    // const height = 264
-    const height = 245
-    const texture = 'hero'
-    const swordArmTexture = 'hero-sword-arm'
+    const width = 100
+    const height = 200
+    const texture = 'hero-potato'
+    const swordArmTexture = 'sword-arm'
     const jumpHeight = 300
-    const core = scene.add.sprite((width / 2), 0, texture)
+    const core = scene.add.sprite(0, 0, texture)
     const swordArm = scene.physics.add.sprite(0, 0, swordArmTexture)
     swordArm.body.setAllowGravity(false)
-    swordArm.setOrigin(0.335, 0.59)
-    swordArm.setPosition((width / 2), (height / 3.75))
-    core.setOrigin(0.5, 0)
+    swordArm.setOrigin(0.41, 0.47)
+    swordArm.setPosition((width / 2), (height / 2))
+    core.setOrigin(0, 0)
     super(scene, x, y, [
       core,
       swordArm,
@@ -70,12 +68,12 @@ class Hero extends Container {
     const velocityX = (Number(right.isDown) | Number(d.isDown)) - (Number(left.isDown) | Number(a.isDown))
     const magicNumber = 500
     if (isAttacking) {
+      core.setFrame(5)
       swordArm.setFrame(1)
-      core.anims.play('hero-swing', true)
       if (core.flipX) {
-        // swordArm.setPosition((spriteWidth / 2 + 5), (spriteHeight / 2 + 15))
+        swordArm.setPosition((spriteWidth / 2 + 5), (spriteHeight / 2 + 15))
       } else {
-        // swordArm.setPosition((spriteWidth / 2) - 10, (spriteHeight / 3.75) + 5)
+        swordArm.setPosition((spriteWidth / 2 - 5), (spriteHeight / 2 + 15))
       }
       this.body.setVelocityX(0)
       if (!isSwinging) {
@@ -87,12 +85,12 @@ class Hero extends Container {
               : (Math.PI / 2)
           ),
           ease: 'Power1',
-          duration: 200,
+          duration: 150,
           yoyo: false,
           repeat: 0,
           onComplete: () => {
             swordArm.setFrame(0)
-            swordArm.setPosition((spriteWidth / 2), (spriteHeight / 3.75))
+            swordArm.setPosition((spriteWidth / 2), (spriteHeight / 2))
             swordArm.setRotation(Math.PI + (Math.PI * 0.95))
             this.isAttacking = false
             this.isSwinging = false
@@ -109,7 +107,7 @@ class Hero extends Container {
         if (core.flipX) {
           swordArm.setRotation(((Math.PI / 2)))
         } else {
-          swordArm.setRotation(Math.PI)
+          swordArm.setRotation((Math.PI + (Math.PI / 2)))
         }
       }
       if (velocityX < 0) {
@@ -119,23 +117,17 @@ class Hero extends Container {
         core.setFlipX(false)
         swordArm.scaleX = 1
       }
-      if (!this.isAttacking) {
-        if (this.body.velocity.y < 0) {
-          core.anims.play('hero-up', true)
-          swordArm.setRotation(-(Math.PI / 3))
-        } else if (this.body.velocity.y > 0) {
-          core.anims.play('hero-down', true)
-          swordArm.setRotation(-(Math.PI / 3.5))
-        } else if (this.body.velocity.x) {
-          core.anims.play('hero-run', true)
-          swordArm.setRotation(-(Math.PI / 3.5) + (Math.random() / 10))
-        } else {
-          core.anims.play('hero-idle', true)
-          swordArm.setRotation(-((Math.PI / 6)))
-        }
+      if (this.body.velocity.y < 0) {
+        core.anims.play('hero-jump', true)
+      } else if (this.body.velocity.y > 0) {
+        core.anims.play('hero-fall', true)
+      } else if (this.body.velocity.x) {
+        core.anims.play('hero-run', true)
+      } else {
+        core.anims.play('hero-idle', true)
       }
     }
   }
 }
 
-export default Hero
+export default Potato

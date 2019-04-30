@@ -6,7 +6,7 @@ class PreloaderScene extends Scene {
   }
 
   preload () {
-    this.load.image('hero', '/static/images/bob.png')
+    // this.load.image('hero', '/static/images/bob.png')
     this.load.spritesheet('hero-potato', '/static/images/hero-potato-noarms.png', {
       frameWidth: 100,
       frameHeight: 200,
@@ -23,29 +23,34 @@ class PreloaderScene extends Scene {
     this.load.tilemapTiledJSON('bob-world', '/static/maps/BobWorld.json')
     this.load.image('tile-image', '/static/images/basic-world-tiles.png')
     this.load.tilemapTiledJSON('new-world', '/static/maps/ANewWorld.json')
+    this.load.spritesheet('hero-sword-arm', '/static/images/hero-sword-arm.png', {
+      frameWidth: 340,
+      frameHeight: 260,
+    })
+    this.load.multiatlas('hero', '/static/images/hero/hero.json', '/static/images/hero/packed')
   }
 
   create () {
     this.anims.create({
-      key: 'hero-idle',
+      key: 'potato-idle',
       frames: this.anims.generateFrameNames('hero-potato', { start: 0, end: 0 }),
       frameRate: 3,
       repeat: -1,
     })
     this.anims.create({
-      key: 'hero-run',
+      key: 'potato-run',
       frames: this.anims.generateFrameNames('hero-potato', { start: 0, end: 1 }),
       frameRate: 6,
       repeat: -1,
     })
     this.anims.create({
-      key: 'hero-fall',
+      key: 'potato-fall',
       frames: this.anims.generateFrameNames('hero-potato', { start: 3, end: 3 }),
       frameRate: 6,
       repeat: -1,
     })
     this.anims.create({
-      key: 'hero-jump',
+      key: 'potato-jump',
       frames: this.anims.generateFrameNames('hero-potato', { start: 2, end: 2 }),
       frameRate: 6,
       repeat: -1,
@@ -54,6 +59,47 @@ class PreloaderScene extends Scene {
       key: 'pot-smash-smash',
       frames: this.anims.generateFrameNames('pot-smash', { start: 0, end: 3 }),
       frameRate: 10,
+      repeat: 0,
+    })
+    // Hero
+    this.anims.create({
+      key: 'hero-idle',
+      frames: this.anims.generateFrameNames('hero', {
+        prefix: 'idle/', start: 1, end: 3, zeroPad: 2, suffix: '.png',
+      }),
+      frameRate: 3,
+      repeat: -1,
+    })
+    this.anims.create({
+      key: 'hero-run',
+      frames: this.anims.generateFrameNames('hero', {
+        prefix: 'run/', start: 1, end: 13, zeroPad: 2, suffix: '.png',
+      }),
+      frameRate: 16,
+      repeat: -1,
+    })
+    this.anims.create({
+      key: 'hero-up',
+      frames: this.anims.generateFrameNames('hero', {
+        prefix: 'up/', start: 1, end: 2, zeroPad: 2, suffix: '.png',
+      }),
+      frameRate: 3,
+      repeat: -1,
+    })
+    this.anims.create({
+      key: 'hero-down',
+      frames: this.anims.generateFrameNames('hero', {
+        prefix: 'down/', start: 1, end: 2, zeroPad: 2, suffix: '.png',
+      }),
+      frameRate: 3,
+      repeat: -1,
+    })
+    this.anims.create({
+      key: 'hero-swing',
+      frames: this.anims.generateFrameNames('hero', {
+        prefix: 'swing/', start: 1, end: 4, zeroPad: 2, suffix: '.png',
+      }),
+      frameRate: 16,
       repeat: 0,
     })
     this.scene.start('scene-ui-title')
