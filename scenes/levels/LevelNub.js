@@ -115,6 +115,12 @@ class LevelNub extends Scene {
     this.cameras.main.startFollow(this.map.get('player'))
 
     this.map.set('monies', 0)
+
+    // Musicz
+    const music = this.sound.add('music-theme-main', {
+      loop: true,
+    })
+    music.play()
   }
 
   hitEnemy = (swordArm, enemy) => {

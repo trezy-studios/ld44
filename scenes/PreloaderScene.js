@@ -32,6 +32,7 @@ class PreloaderScene extends Scene {
       frameHeight: 260,
     })
     this.load.multiatlas('hero', '/static/images/hero/hero.json', '/static/images/hero/packed')
+    this.load.audio('music-theme-main', '/static/audio/LD_Intro_Music.mp3')
   }
 
   create () {
