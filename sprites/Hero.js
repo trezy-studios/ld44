@@ -72,11 +72,6 @@ class Hero extends Container {
     if (isAttacking) {
       swordArm.setFrame(1)
       core.anims.play('hero-swing', true)
-      if (core.flipX) {
-        // swordArm.setPosition((spriteWidth / 2 + 5), (spriteHeight / 2 + 15))
-      } else {
-        // swordArm.setPosition((spriteWidth / 2) - 10, (spriteHeight / 3.75) + 5)
-      }
       this.body.setVelocityX(0)
       if (!isSwinging) {
         this.scene.tweens.add({
@@ -120,18 +115,19 @@ class Hero extends Container {
         swordArm.scaleX = 1
       }
       if (!this.isAttacking) {
+        const direction = (core.flipX ? 1 : -1)
         if (this.body.velocity.y < 0) {
           core.anims.play('hero-up', true)
-          swordArm.setRotation(-(Math.PI / 3))
+          swordArm.setRotation(direction * (Math.PI / 3))
         } else if (this.body.velocity.y > 0) {
           core.anims.play('hero-down', true)
-          swordArm.setRotation(-(Math.PI / 3.5))
+          swordArm.setRotation(direction * (Math.PI / 3.5))
         } else if (this.body.velocity.x) {
           core.anims.play('hero-run', true)
-          swordArm.setRotation(-(Math.PI / 3.5) + (Math.random() / 10))
+          swordArm.setRotation(direction * (Math.PI / 3.5) + (direction * (Math.random() / 10)))
         } else {
           core.anims.play('hero-idle', true)
-          swordArm.setRotation(-((Math.PI / 6)))
+          swordArm.setRotation(direction * ((Math.PI / 6)))
         }
       }
     }
