@@ -11,7 +11,7 @@ import {
   connectNonReactComponent as connect,
 } from '../../store'
 import Hero from '../../sprites/Hero'
-
+import Enemy from '../../sprites/Enemy'
 
 
 
@@ -26,25 +26,9 @@ class LevelNub extends Scene {
     this.cameras.main.setBackgroundColor('#738')
     this.cameras.main.setBounds(0, 0, 30000, 4000)
     this.map = new Map()
-    const x = 150
-    const y = 50
     const potsArr = []
-    for (let px = 200; px <= 2000; px += 200) {
-      potsArr.push(
-        this.physics.add.sprite(px, 50, 'pot-smash').setScale(0.5)
-      )
-    }
-    const pots = this.physics.add.group(potsArr)
-    pots.setDepth(1)
-    const player = new Hero({
-      x,
-      y,
-      scene: this,
-    })
-    player.setDepth(2)
-    this.map.set('pots', pots)
-    this.map.set('player', player)
     this.map.set('keys', this.input.keyboard.createCursorKeys())
+    this.map.set('enemy', [])
     this.WSAD = {
       w: this.input.keyboard.addKey(Input.Keyboard.KeyCodes.W),
       s: this.input.keyboard.addKey(Input.Keyboard.KeyCodes.S),
@@ -59,6 +43,41 @@ class LevelNub extends Scene {
       tileWidth,
       tileHeight,
     })
+    const mapObjects = map.objects[0].objects
+    for (let i = 0; i < mapObjects.length; i += 1) {
+      const { x, y, name } = mapObjects[i]
+      switch (name) {
+        case 'PlayerSpawn': {
+          const player = new Hero({
+            x,
+            y,
+            scene: this,
+          })
+          player.setDepth(2)
+          this.map.set('player', player)
+          break
+        }
+        case 'PotSpawn': {
+          potsArr.push(this.physics.add.sprite(x, y, 'pot-smash').setScale(0.5))
+          break
+        }
+        case 'EnemySpawn': {
+          const enemy = new Enemy({
+            x,
+            y,
+            scene: this,
+          })
+          enemy.setDepth(Math.round(Math.random()) + 2)
+          this.map.get('enemy').push(enemy)
+          break
+        }
+        default:
+          break
+      }
+    }
+    const pots = this.physics.add.group(potsArr)
+    pots.setDepth(1)
+    this.map.set('pots', pots)
     const tileset = map.addTilesetImage(
       'Tileset',
       'tile-image'
@@ -71,12 +90,24 @@ class LevelNub extends Scene {
       this.map.get('player'),
       solidLayer
     )
+    const enemies = this.map.get('enemy')
+    for (let i = 0; i < enemies.length; i += 1) {
+      this.physics.add.collider(
+        enemies[i],
+        solidLayer
+      )
+      this.physics.add.overlap(
+        this.map.get('player').getSwordArm(),
+        enemies[i],
+        this.hitEnemy
+      )
+    }
     this.physics.add.collider(
       pots,
       solidLayer,
     )
     this.physics.add.overlap(
-      player.getSwordArm(),
+      this.map.get('player').getSwordArm(),
       pots,
       this.breakPot
     )
@@ -84,6 +115,13 @@ class LevelNub extends Scene {
     this.cameras.main.startFollow(this.map.get('player'))
 
     this.map.set('monies', 0)
+  }
+
+  hitEnemy = (swordArm, enemy) => {
+    if (swordArm.frame.name === 1 && !enemy.isDead) {
+      console.log('hit', swordArm, enemy)
+      enemy.setIsDead(true)
+    }
   }
 
   breakPot = (swordArm, potInQuestion) => {
