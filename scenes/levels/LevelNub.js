@@ -11,7 +11,7 @@ import {
   connectNonReactComponent as connect,
 } from '../../store'
 import Hero from '../../sprites/Hero'
-
+import Enemy from '../../sprites/Enemy'
 
 
 
@@ -28,6 +28,7 @@ class LevelNub extends Scene {
     this.map = new Map()
     const potsArr = []
     this.map.set('keys', this.input.keyboard.createCursorKeys())
+    this.map.set('enemy', [])
     this.WSAD = {
       w: this.input.keyboard.addKey(Input.Keyboard.KeyCodes.W),
       s: this.input.keyboard.addKey(Input.Keyboard.KeyCodes.S),
@@ -60,6 +61,16 @@ class LevelNub extends Scene {
           potsArr.push(this.physics.add.sprite(x, y, 'pot-smash').setScale(0.5))
           break
         }
+        case 'EnemySpawn': {
+          const enemy = new Enemy({
+            x,
+            y,
+            scene: this,
+          })
+          enemy.setDepth(Math.round(Math.random()) + 2)
+          this.map.get('enemy').push(enemy)
+          break
+        }
         default:
           break
       }
@@ -79,6 +90,18 @@ class LevelNub extends Scene {
       this.map.get('player'),
       solidLayer
     )
+    const enemies = this.map.get('enemy')
+    for (let i = 0; i < enemies.length; i += 1) {
+      this.physics.add.collider(
+        enemies[i],
+        solidLayer
+      )
+      this.physics.add.overlap(
+        this.map.get('player').getSwordArm(),
+        enemies[i],
+        this.hitEnemy
+      )
+    }
     this.physics.add.collider(
       pots,
       solidLayer,
@@ -92,6 +115,13 @@ class LevelNub extends Scene {
     this.cameras.main.startFollow(this.map.get('player'))
 
     this.map.set('monies', 0)
+  }
+
+  hitEnemy = (swordArm, enemy) => {
+    if (swordArm.frame.name === 1 && !enemy.isDead) {
+      console.log('hit', swordArm, enemy)
+      enemy.setIsDead(true)
+    }
   }
 
   breakPot = (swordArm, potInQuestion) => {
