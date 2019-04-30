@@ -15,7 +15,7 @@ class Hero extends Container {
     const height = 245
     const texture = 'hero'
     const swordArmTexture = 'hero-sword-arm'
-    const jumpHeight = 300
+    const jumpHeight = 700
     const core = scene.add.sprite((width / 2), 0, texture)
     const swordArm = scene.physics.add.sprite(0, 0, swordArmTexture)
     swordArm.body.setAllowGravity(false)
